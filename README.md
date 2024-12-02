@@ -68,6 +68,19 @@ Get up and running with WhoDB quickly using Docker:
 docker run -it -p 8080:8080 clidey/whodb
 ```
 
+Using Docker with Your Own OpenAI API URL. To run the `whodb_orange` container, use the following command. Make sure to replace the placeholders with your own information:
+```sh
+docker build -t whodb_orange -f core/Dockerfile .
+docker run -it \
+  -e WHODB_OLLAMA_HOST=your_ollama_host \
+  -e WHODB_OLLAMA_PORT=your_ollama_port \
+  -e USE_CUSTOM_MODELS=1 \
+  -e CUSTOM_MODELS=gpt-4o \
+  -e OPENAI_BASE_URL=http://your_openai_base_url/v1 \
+  -p 8080:8080 \
+  whodb_orange
+```
+
 Or, use Docker Compose:
 ```sh
 version: "3.8"
